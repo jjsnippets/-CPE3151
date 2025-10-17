@@ -40,8 +40,8 @@ run = True
 
 # Generate client's key pairs
 client_private_key = rsa.generate_private_key(       
-    public_exponent=65537,
-    key_size=2048
+    public_exponent = 65537,
+    key_size = 2048
 )
 client_public_key = client_private_key.public_key()
 
@@ -60,8 +60,8 @@ server_public_key = serialization.load_pem_public_key(server_public_pem)
 
     # Send client's public key to server
 client_public_pem = client_public_key.public_bytes(
-    encoding=serialization.Encoding.PEM,
-    format=serialization.PublicFormat.SubjectPublicKeyInfo
+    encoding = serialization.Encoding.PEM,
+    format = serialization.PublicFormat.SubjectPublicKeyInfo
 )
 s.sendall(client_public_pem)
 
@@ -79,9 +79,9 @@ while run:
         encrypted_msg = server_public_key.encrypt(
             msg.encode(),
             padding.OAEP(
-                mgf=padding.MGF1(algorithm=hashes.SHA256()),
-                algorithm=hashes.SHA256(),
-                label=None
+                mgf = padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm = hashes.SHA256(),
+                label = None
             )
         )
         s.sendall(encrypted_msg)

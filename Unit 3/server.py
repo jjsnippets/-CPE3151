@@ -41,8 +41,8 @@ run = True
 
 # Generate server's key pairs
 server_private_key = rsa.generate_private_key(
-    public_exponent=65537,
-    key_size=2048
+    public_exponent = 65537,
+    key_size = 2048
 )
 server_public_key = server_private_key.public_key()
 
@@ -59,8 +59,8 @@ print('Server accepted client connection...')
 # Exchange of public keys
     # Send server's public key to client
 server_public_pem = server_public_key.public_bytes(
-    encoding=serialization.Encoding.PEM,
-    format=serialization.PublicFormat.SubjectPublicKeyInfo
+    encoding = serialization.Encoding.PEM,
+    format = serialization.PublicFormat.SubjectPublicKeyInfo
 )
 conn.sendall(server_public_pem)
 
